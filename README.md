@@ -34,15 +34,11 @@ You can configure the path, namespace, table_name, name, organize_migrations and
 # app/config/config.yml
 data_migrations:
     dir_name: "%kernel.root_dir%/DataMigrations"
-    namespace: "App\\Migrations"
+    namespace: "Application\\Migrations"
     table_name: "data_migration_versions"
-    column_name: "version"
-    column_length: 14
-    executed_at_column_name: "executed_at"
     name: Application Data Migrations
     organize_migrations: false # Possible values are: "BY_YEAR", "BY_YEAR_AND_MONTH", false
     custom_template: ~ # Path to your custom migrations template
-    all_or_nothing: false
 ```
 
 ## Usage
@@ -73,8 +69,7 @@ If you need more information, please refer to the [original bundle documentation
 Needs tests.
 Needs to configure circleCI or Travis.
 
-## Running tests & quality checks
+## Running tests & cs checks
 
-./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox tests
-./vendor/bin/phpstan analyse -l5 -c phpstan.neon src
-./vendor/bin/php-cs-fixer fix --config .php_cs.dist --verbose --dry-run sr
+`$ ./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox tests`
+`$ ./vendor/bin/php-cs-fixer fix --config .php_cs.dist --verbose --dry-run src`

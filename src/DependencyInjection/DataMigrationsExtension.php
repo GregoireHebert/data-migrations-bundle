@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Gheb\DataMigrationsBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
@@ -12,14 +10,14 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 /**
  * @author Grégoire Hébert <gregoire@les-tilleuls.coop>
  */
-final class DataMigrationExtension extends Extension
+final class DataMigrationsExtension extends Extension
 {
     /**
      * Responds to the migrations configuration parameter.
      *
      * @param string[][] $configs
      */
-    public function load(array $configs, ContainerBuilder $container): void
+    public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
 
@@ -40,12 +38,12 @@ final class DataMigrationExtension extends Extension
      *
      * @return string The XSD base path
      */
-    public function getXsdValidationBasePath(): string
+    public function getXsdValidationBasePath()
     {
         return __DIR__.'/../Resources/config/schema';
     }
 
-    public function getNamespace(): string
+    public function getNamespace()
     {
         return 'http://symfony.com/schema/dic/doctrine/migrations';
     }

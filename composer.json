@@ -11,19 +11,21 @@
       }
     ],
     "require": {
-        "php": ">=7.1.0",
-        "doctrine/dbal": "^2.8",
-        "doctrine/doctrine-migrations-bundle": "^2.0",
-        "symfony/config": "^3.4 || ^4.0",
-        "symfony/console": "^4.1",
-        "symfony/dependency-injection": "^4.1",
-        "symfony/http-kernel": "^4.1"
+        "php": ">=5.4.0",
+        "symfony/console": "~3.4|~4.0",
+        "symfony/config": "~3.4|~4.0",
+        "symfony/http-kernel": "~3.4|~4.0",
+        "symfony/dependency-injection": "~3.4|~4.0",
+        "doctrine/migrations": "^1.1",
+        "doctrine/dbal": "~2.6",
+        "doctrine/doctrine-bundle": "~1.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.13",
-        "phpstan/phpstan": "^0.10.5",
-        "phpstan/phpstan-deprecation-rules": "^0.10.2",
-        "phpunit/phpunit": "^7.4"
+        "phpunit/phpunit": "^4.8.36"
+    },
+    "suggest": {
+      "doctrine/doctrine-migrations-bundle": "Help you version the changes in your database schema"
     },
     "autoload": {
       "psr-4": { "Gheb\\DataMigrationsBundle\\": "src/" }
@@ -34,5 +36,5 @@
     "config": {
       "sort-packages": true
     },
-    "minimum-stability": "beta"
+    "minimum-stability": "stable"
 }

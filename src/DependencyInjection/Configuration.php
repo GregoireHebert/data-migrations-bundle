@@ -1,10 +1,7 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Gheb\DataMigrationsBundle\DependencyInjection;
 
-use Doctrine\Migrations\Configuration\Configuration as BaseConfiguration;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -19,7 +16,7 @@ final class Configuration implements ConfigurationInterface
      *
      * @return TreeBuilder The config tree builder
      */
-    public function getConfigTreeBuilder(): TreeBuilder
+    public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
 
@@ -30,38 +27,34 @@ final class Configuration implements ConfigurationInterface
         /* @var NodeBuilder $children */
         $rootNode->children()
             ->scalarNode('dir_name')->defaultValue('%kernel.root_dir%/DataMigrations')->cannotBeEmpty()->end()
-            ->scalarNode('namespace')->defaultValue('App\DataMigrations')->cannotBeEmpty()->end()
+            ->scalarNode('namespace')->defaultValue('Application\DataMigrations')->cannotBeEmpty()->end()
             ->scalarNode('table_name')->defaultValue('data_migration_versions')->cannotBeEmpty()->end()
-            ->scalarNode('column_name')->defaultValue('version')->end()
-            ->scalarNode('column_length')->defaultValue(14)->end()
-            ->scalarNode('executed_at_column_name')->defaultValue('executed_at')->end()
-            ->scalarNode('all_or_nothing')->defaultValue(false)->end()
             ->scalarNode('name')->defaultValue('Application Data Migrations')->end()
             ->scalarNode('custom_template')->defaultValue(null)->end()
             ->scalarNode('organize_migrations')->defaultValue(false)
             ->info('Organize migrations mode. Possible values are: "BY_YEAR", "BY_YEAR_AND_MONTH", false')
             ->validate()
-            ->ifTrue(function ($v) use ($organizeMigrationModes) {
-                if (false === $v) {
-                    return false;
-                }
+                ->ifTrue(function ($v) use ($organizeMigrationModes) {
+                    if (false === $v) {
+                        return false;
+                    }
 
-                if (\is_string($v) && \in_array(strtoupper($v), $organizeMigrationModes, true)) {
-                    return false;
-                }
+                    if (\is_string($v) && \in_array(strtoupper($v), $organizeMigrationModes, true)) {
+                        return false;
+                    }
 
-                return true;
-            })
-            ->thenInvalid('Invalid organize migrations mode value %s')
+                    return true;
+                })
+                ->thenInvalid('Invalid organize migrations mode value %s')
             ->end()
             ->validate()
-            ->ifString()
-            ->then(function ($v) {
-                return \constant('Doctrine\Migrations\Configuration\Configuration::VERSIONS_ORGANIZATION_'.strtoupper($v));
-            })
+                ->ifString()
+                ->then(function ($v) {
+                    return \constant('Doctrine\Migrations\Configuration\Configuration::VERSIONS_ORGANIZATION_'.strtoupper($v));
+                })
             ->end()
-            ->end()
-            ->end()
+        ->end()
+        ->end()
         ;
 
         return $treeBuilder;
@@ -72,11 +65,11 @@ final class Configuration implements ConfigurationInterface
      *
      * @return string[]
      */
-    private function getOrganizeMigrationsModes(): array
+    private function getOrganizeMigrationsModes()
     {
         $constPrefix = 'VERSIONS_ORGANIZATION_';
         $prefixLen = \strlen($constPrefix);
-        $refClass = new \ReflectionClass(BaseConfiguration::class);
+        $refClass = new \ReflectionClass('Doctrine\DBAL\Migrations\Configuration\Configuration');
         $constsArray = $refClass->getConstants();
         $namesArray = [];
 
