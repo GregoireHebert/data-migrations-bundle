@@ -4,57 +4,49 @@ declare(strict_types=1);
 
 namespace Gheb\DataMigrationsBundle\Command;
 
-use Doctrine\Bundle\MigrationsBundle\Command\MigrationsGenerateDoctrineCommand as BaseMigrationsGenerateDoctrineCommand;
+use Doctrine\Migrations\Tools\Console\Command\GenerateCommand;
+use InvalidArgumentException;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Command for generating new blank migration classes.
+ * Command for generating new blank migration classes
  */
-class MigrationsGenerateDoctrineCommand extends BaseMigrationsGenerateDoctrineCommand
+class MigrationsGenerateDoctrineCommand extends GenerateCommand
 {
-    protected function configure(): void
+    protected function configure() : void
     {
         parent::configure();
 
         $this
-            ->setName('gheb:data-migrations:generate')
-        ;
+            ->setName('doctrine:migrations:generate')
+            ->addOption('db', null, InputOption::VALUE_REQUIRED, 'The database connection to use for this command.')
+            ->addOption('em', null, InputOption::VALUE_REQUIRED, 'The entity manager to use for this command.')
+            ->addOption('shard', null, InputOption::VALUE_REQUIRED, 'The shard connection to use for this command.');
     }
 
-    public function execute(InputInterface $input, OutputInterface $output): ?int
+    public function initialize(InputInterface $input, OutputInterface $output) : void
+    {
+        /** @var Application $application */
+        $application = $this->getApplication();
+
+        Helper\DoctrineCommandHelper::setApplicationHelper($application, $input);
+
+        $configuration = $this->getMigrationConfiguration($input, $output);
+        DoctrineCommand::configureMigrations($application->getKernel()->getContainer(), $configuration);
+
+        parent::initialize($input, $output);
+    }
+
+    public function execute(InputInterface $input, OutputInterface $output) : ?int
     {
         // EM and DB options cannot be set at same time
-        if (null !== $input->getOption('em') && null !== $input->getOption('db')) {
-            throw new \InvalidArgumentException('Cannot set both "em" and "db" for command execution.');
+        if ($input->getOption('em') !== null && $input->getOption('db') !== null) {
+            throw new InvalidArgumentException('Cannot set both "em" and "db" for command execution.');
         }
 
-        $versionNumber = $this->configuration->generateVersionNumber();
-
-        $migrationGenerator = $this->dependencyFactory->getMigrationGenerator();
-
-        $path = $migrationGenerator->generateMigration($versionNumber);
-
-        $editorCommand = $input->getOption('editor-cmd');
-
-        if (null !== $editorCommand) {
-            $this->procOpen($editorCommand, $path);
-        }
-
-        $output->writeln([
-            sprintf('Generated new migration class to "<info>%s</info>"', $path),
-            '',
-            sprintf(
-                'To run just this migration for testing purposes, you can use <info>gheb:data-migrations:execute --up %s</info>',
-                $versionNumber
-            ),
-            '',
-            sprintf(
-                'To revert the migration you can use <info>gheb:data-migrations:execute --down %s</info>',
-                $versionNumber
-            ),
-        ]);
-
-        return 0;
+        return parent::execute($input, $output);
     }
 }

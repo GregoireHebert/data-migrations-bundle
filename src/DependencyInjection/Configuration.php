@@ -30,7 +30,7 @@ final class Configuration implements ConfigurationInterface
         /* @var NodeBuilder $children */
         $rootNode->children()
             ->scalarNode('dir_name')->defaultValue('%kernel.root_dir%/DataMigrations')->cannotBeEmpty()->end()
-            ->scalarNode('namespace')->defaultValue('App\DataMigrations')->cannotBeEmpty()->end()
+            ->scalarNode('namespace')->defaultValue('Application\DataMigrations')->cannotBeEmpty()->end()
             ->scalarNode('table_name')->defaultValue('data_migration_versions')->cannotBeEmpty()->end()
             ->scalarNode('column_name')->defaultValue('version')->end()
             ->scalarNode('column_length')->defaultValue(14)->end()
