@@ -1,0 +1,7 @@
+includes:
+	- rules.neon
+
+parameters:
+    ignoreErrors:
+        # phpstan limitations
+        - '#Call to an undefined method .*\NodeDefinition::children.*#'

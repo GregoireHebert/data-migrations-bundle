@@ -1,0 +1,58 @@
+<?php
+
+declare(strict_types=1);
+
+$finder = PhpCsFixer\Finder::create()
+    ->in(['src'])
+;
+
+return PhpCsFixer\Config::create()
+    ->setRiskyAllowed(true)
+    ->setRules([
+        '@PSR1' => true,
+        '@PSR2' => true,
+        '@DoctrineAnnotation' => true,
+        '@Symfony' => true,
+        '@Symfony:risky' => true,
+        '@PHPUnit57Migration:risky' => true,
+        '@PHP71Migration' => true,
+        '@PHP71Migration:risky' => true,
+        'array_syntax' => ['syntax' => 'short'],
+        'declare_strict_types' => true,
+        'void_return' => false,
+        'native_function_invocation' => [
+            'include' => [
+                '@compiler_optimized',
+            ],
+        ],
+        'modernize_types_casting' => true,
+        'braces' => [
+            'allow_single_line_closure' => true,
+        ],
+        'no_extra_blank_lines' => [
+            'tokens' => [
+                'break',
+                'continue',
+                'curly_brace_block',
+                'extra',
+                'parenthesis_brace_block',
+                'return',
+                'square_brace_block',
+                'throw',
+                'use',
+            ],
+        ],
+        'no_useless_else' => true,
+        'no_useless_return' => true,
+        'no_superfluous_phpdoc_tags' => true,
+        'ordered_imports' => true,
+        'phpdoc_order' => true,
+        'psr4' => true,
+        'semicolon_after_instruction' => true,
+        'strict_comparison' => true,
+        'strict_param' => true,
+        'ternary_to_null_coalescing' => true,
+    ])
+    ->setUsingCache(true)
+    ->setFinder($finder)
+;

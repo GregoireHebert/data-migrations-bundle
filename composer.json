@@ -1,0 +1,38 @@
+{
+    "name": "gheb/data-migrations-bundle",
+    "description": "Migrate your data along side your data structure.",
+    "type": "symfony-bundle",
+    "keywords": ["DBAL", "Migrations", "data"],
+    "license": "MIT",
+    "authors": [
+      {
+        "name": "Grégoire Hébert",
+        "email": "gregoire@les-tilleuls.coop"
+      }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "doctrine/dbal": "^2.8",
+        "doctrine/doctrine-migrations-bundle": "^2.0",
+        "symfony/config": "^3.4 || ^4.0",
+        "symfony/console": "^4.1",
+        "symfony/dependency-injection": "^4.1",
+        "symfony/http-kernel": "^4.1"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.13",
+        "phpstan/phpstan": "^0.10.5",
+        "phpstan/phpstan-deprecation-rules": "^0.10.2",
+        "phpunit/phpunit": "^7.4"
+    },
+    "autoload": {
+      "psr-4": { "Gheb\\DataMigrationsBundle\\": "src/" }
+    },
+    "autoload-dev": {
+      "psr-4": { "Gheb\\DataMigrationsBundle\\Tests\\": "tests/" }
+    },
+    "config": {
+      "sort-packages": true
+    },
+    "minimum-stability": "beta"
+}
