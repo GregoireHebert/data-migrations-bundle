@@ -16,6 +16,7 @@
         "symfony/config": "~4.1",
         "symfony/http-kernel": "~4.1",
         "symfony/dependency-injection": "~4.1",
+        "doctrine/common": "^2.8",
         "doctrine/orm": "^2.6",
         "doctrine/migrations": "^2.0@beta",
         "doctrine/dbal": "^2.6",
