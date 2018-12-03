@@ -1,7 +1,7 @@
 # DataMigrationsBundle
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-![Status: WIP](https://img.shields.io/badge/status-WIP-red.svg)
+[![Build Status](https://travis-ci.com/GregoireHebert/data-migrations-bundle.svg?branch=1.3)](https://travis-ci.com/GregoireHebert/data-migrations-bundle)
 
 This bundle is the missing piece of the [Doctrine2 Migrations bundle](https://symfony.com/doc/master/bundles/DoctrineMigrationsBundle/index.html)
 into Symfony applications. Data migrations help you version the changes in your data, and apply them in a predictable way on every server running the application.
@@ -63,11 +63,6 @@ All of the migrations functionality is contained in a few console commands:
 
 This bundle is based on the doctrine migrations bundle.
 If you need more information, please refer to the [original bundle documentation](https://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html).
-
-## Todo
-
-Needs tests.
-Needs to configure circleCI or Travis.
 
 ## Running tests & cs checks
 
