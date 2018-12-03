@@ -11,7 +11,7 @@
       }
     ],
     "require": {
-        "php": ">=5.4.0",
+        "php": ">=5.4.0 <7.3",
         "symfony/console": "~3.4|~4.0",
         "symfony/config": "~3.4|~4.0",
         "symfony/http-kernel": "~3.4|~4.0",
