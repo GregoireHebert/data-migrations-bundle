@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gheb\DataMigrationsBundle\Command;
 
 use Doctrine\DBAL\Migrations\Tools\Console\Command\ExecuteCommand;

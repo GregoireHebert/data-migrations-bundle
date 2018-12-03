@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gheb\DataMigrationsBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
@@ -27,7 +29,7 @@ final class DataMigrationsExtension extends Extension
             $container->setParameter($this->getAlias().'.'.$key, $value);
         }
 
-        $locator = new FileLocator(__DIR__.'/../Resources/config/');
+        $locator = new FileLocator(__DIR__.'/../Resources/config');
         $loader = new XmlFileLoader($container, $locator);
 
         $loader->load('services.xml');
