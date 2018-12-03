@@ -16,11 +16,11 @@
         "symfony/config": "~3.4|~4.0",
         "symfony/http-kernel": "~3.4|~4.0",
         "symfony/dependency-injection": "~3.4|~4.0",
-        "doctrine/common": "^2.8",
+        "doctrine/common": "^2.7",
         "doctrine/orm": "~2.5",
-        "doctrine/migrations": "^1.1",
-        "doctrine/dbal": "~2.6",
-        "doctrine/doctrine-bundle": "~1.0"
+        "doctrine/migrations": "^1.5",
+        "doctrine/dbal": "~2.5",
+        "doctrine/doctrine-bundle": "~1.10"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.13",
