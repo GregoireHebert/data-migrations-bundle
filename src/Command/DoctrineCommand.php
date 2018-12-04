@@ -25,14 +25,14 @@ use function str_replace;
  */
 abstract class DoctrineCommand extends BaseCommand
 {
-    public static function configureMigrations(ContainerInterface $container, Configuration $configuration) : void
+    public static function configureMigrations(ContainerInterface $container, Configuration $configuration): void
     {
         $dir = $configuration->getMigrationsDirectory();
 
         if (empty($dir)) {
             $dir = $container->getParameter('data_migrations.dir_name');
 
-            if (! is_dir($dir) && ! @mkdir($dir, 0777, true) && ! is_dir($dir)) {
+            if (!is_dir($dir) && !@mkdir($dir, 0777, true) && !is_dir($dir)) {
                 $error = error_get_last();
 
                 throw new ErrorException(sprintf(
@@ -48,14 +48,14 @@ abstract class DoctrineCommand extends BaseCommand
             $pathPlaceholderArray = ['kernel.root_dir', 'kernel.cache_dir', 'kernel.logs_dir'];
 
             foreach ($pathPlaceholderArray as $pathPlaceholder) {
-                if (! $container->hasParameter($pathPlaceholder) || ! preg_match('/\%' . $pathPlaceholder . '\%/', $dir)) {
+                if (!$container->hasParameter($pathPlaceholder) || !preg_match('/\%'.$pathPlaceholder.'\%/', $dir)) {
                     continue;
                 }
 
-                $dir = str_replace('%' . $pathPlaceholder . '%', $container->getParameter($pathPlaceholder), $dir);
+                $dir = str_replace('%'.$pathPlaceholder.'%', $container->getParameter($pathPlaceholder), $dir);
             }
 
-            if (! is_dir($dir) && ! @mkdir($dir, 0777, true) && ! is_dir($dir)) {
+            if (!is_dir($dir) && !@mkdir($dir, 0777, true) && !is_dir($dir)) {
                 $error = error_get_last();
 
                 throw new ErrorException(sprintf(
@@ -77,7 +77,7 @@ abstract class DoctrineCommand extends BaseCommand
         }
 
         // For backward compatibility, need use a table from parameters for overwrite the default configuration
-        if (! ($configuration instanceof AbstractFileConfiguration) || empty($configuration->getMigrationsTableName())) {
+        if (!($configuration instanceof AbstractFileConfiguration) || empty($configuration->getMigrationsTableName())) {
             $configuration->setMigrationsTableName($container->getParameter('data_migrations.table_name'));
         }
 
@@ -87,10 +87,10 @@ abstract class DoctrineCommand extends BaseCommand
         $configuration->setAllOrNothing($container->getParameter('data_migrations.all_or_nothing'));
 
         // Migrations is not register from configuration loader
-        if (! ($configuration instanceof AbstractFileConfiguration)) {
+        if (!($configuration instanceof AbstractFileConfiguration)) {
             $migrationsDirectory = $configuration->getMigrationsDirectory();
 
-            if ($migrationsDirectory !== null) {
+            if (null !== $migrationsDirectory) {
                 $configuration->registerMigrationsFromDirectory($migrationsDirectory);
             }
         }
@@ -105,14 +105,11 @@ abstract class DoctrineCommand extends BaseCommand
             case Configuration::VERSIONS_ORGANIZATION_BY_YEAR:
                 $configuration->setMigrationsAreOrganizedByYear(true);
                 break;
-
             case Configuration::VERSIONS_ORGANIZATION_BY_YEAR_AND_MONTH:
                 $configuration->setMigrationsAreOrganizedByYearAndMonth(true);
                 break;
-
             case false:
                 break;
-
             default:
                 throw new InvalidArgumentException('Invalid value for "data_migrations.organize_migrations" parameter.');
         }
@@ -125,11 +122,11 @@ abstract class DoctrineCommand extends BaseCommand
      *
      * Injects the container to migrations aware of it
      */
-    private static function injectContainerToMigrations(ContainerInterface $container, array $versions) : void
+    private static function injectContainerToMigrations(ContainerInterface $container, array $versions): void
     {
         foreach ($versions as $version) {
             $migration = $version->getMigration();
-            if (! ($migration instanceof ContainerAwareInterface)) {
+            if (!($migration instanceof ContainerAwareInterface)) {
                 continue;
             }
 

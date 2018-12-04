@@ -16,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class MigrationsStatusDoctrineCommand extends StatusCommand
 {
-    protected function configure() : void
+    protected function configure(): void
     {
         parent::configure();
 
@@ -27,7 +27,7 @@ class MigrationsStatusDoctrineCommand extends StatusCommand
             ->addOption('shard', null, InputOption::VALUE_REQUIRED, 'The shard connection to use for this command.');
     }
 
-    public function initialize(InputInterface $input, OutputInterface $output) : void
+    public function initialize(InputInterface $input, OutputInterface $output): void
     {
         /** @var Application $application */
         $application = $this->getApplication();
@@ -40,10 +40,10 @@ class MigrationsStatusDoctrineCommand extends StatusCommand
         parent::initialize($input, $output);
     }
 
-    public function execute(InputInterface $input, OutputInterface $output) : ?int
+    public function execute(InputInterface $input, OutputInterface $output): ?int
     {
         // EM and DB options cannot be set at same time
-        if ($input->getOption('em') !== null && $input->getOption('db') !== null) {
+        if (null !== $input->getOption('em') && null !== $input->getOption('db')) {
             throw new InvalidArgumentException('Cannot set both "em" and "db" for command execution.');
         }
 

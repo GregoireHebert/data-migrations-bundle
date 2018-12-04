@@ -11,7 +11,6 @@ use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
 use LogicException;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
-use function count;
 use function sprintf;
 
 /**
@@ -20,7 +19,7 @@ use function sprintf;
  */
 abstract class DoctrineCommandHelper extends BaseDoctrineCommandHelper
 {
-    public static function setApplicationHelper(Application $application, InputInterface $input) : void
+    public static function setApplicationHelper(Application $application, InputInterface $input): void
     {
         $container = $application->getKernel()->getContainer();
 
@@ -29,13 +28,13 @@ abstract class DoctrineCommandHelper extends BaseDoctrineCommandHelper
 
         $managerNames = $doctrine->getManagerNames();
 
-        if ($input->getOption('db') !== null || count($managerNames) === 0) {
+        if (null !== $input->getOption('db') || 0 === \count($managerNames)) {
             self::setApplicationConnection($application, $input->getOption('db'));
         } else {
             self::setApplicationEntityManager($application, $input->getOption('em'));
         }
 
-        if ($input->getOption('shard') === null) {
+        if (null === $input->getOption('shard')) {
             return;
         }
 
@@ -44,8 +43,8 @@ abstract class DoctrineCommandHelper extends BaseDoctrineCommandHelper
 
         $connection = $dbHelper->getConnection();
 
-        if (! $connection instanceof PoolingShardConnection) {
-            if (count($managerNames) === 0) {
+        if (!$connection instanceof PoolingShardConnection) {
+            if (0 === \count($managerNames)) {
                 throw new LogicException(sprintf(
                     "Connection '%s' must implement shards configuration.",
                     $input->getOption('db')

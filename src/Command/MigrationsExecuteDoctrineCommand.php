@@ -40,10 +40,11 @@ class MigrationsExecuteDoctrineCommand extends ExecuteCommand
 
         parent::initialize($input, $output);
     }
-    public function execute(InputInterface $input, OutputInterface $output) : ?int
+
+    public function execute(InputInterface $input, OutputInterface $output): ?int
     {
         // EM and DB options cannot be set at same time
-        if ($input->getOption('em') !== null && $input->getOption('db') !== null) {
+        if (null !== $input->getOption('em') && null !== $input->getOption('db')) {
             throw new InvalidArgumentException('Cannot set both "em" and "db" for command execution.');
         }
 

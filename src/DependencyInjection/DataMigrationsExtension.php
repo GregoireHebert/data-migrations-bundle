@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 /**
  * @author Grégoire Hébert <gregoire@les-tilleuls.coop>
  */
-final class DataMigrationExtension extends Extension
+final class DataMigrationsExtension extends Extension
 {
     /**
      * Responds to the migrations configuration parameter.

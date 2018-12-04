@@ -68,13 +68,7 @@ All of the migrations functionality is contained in a few console commands:
 This bundle is based on the doctrine migrations bundle.
 If you need more information, please refer to the [original bundle documentation](https://symfony.com/doc/current/bundles/DoctrineMigrationsBundle/index.html).
 
-## Todo
-
-Needs tests.
-Needs to configure circleCI or Travis.
-
 ## Running tests & quality checks
 
 ./vendor/bin/phpunit --bootstrap vendor/autoload.php --testdox tests
-./vendor/bin/phpstan analyse -l5 -c phpstan.neon src
 ./vendor/bin/php-cs-fixer fix --config .php_cs.dist --verbose --dry-run sr
