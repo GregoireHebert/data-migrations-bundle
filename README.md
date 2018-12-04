@@ -1,7 +1,7 @@
 # DataMigrationsBundle
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.com/GregoireHebert/data-migrations-bundle.svg?branch=1.3)](https://travis-ci.com/GregoireHebert/data-migrations-bundle)
+![Status: WIP](https://img.shields.io/badge/status-WIP-red.svg)
 
 This bundle is the missing piece of the [Doctrine2 Migrations bundle](https://symfony.com/doc/master/bundles/DoctrineMigrationsBundle/index.html)
 into Symfony applications. Data migrations help you version the changes in your data, and apply them in a predictable way on every server running the application.

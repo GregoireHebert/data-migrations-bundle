@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gheb\DataMigrationsBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;

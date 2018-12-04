@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gheb\DataMigrationsBundle\Command;
 
 use Doctrine\Bundle\DoctrineBundle\Command\DoctrineCommand as BaseCommand;
