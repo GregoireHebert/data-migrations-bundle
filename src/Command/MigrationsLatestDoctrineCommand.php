@@ -21,7 +21,7 @@ class MigrationsLatestDoctrineCommand extends LatestCommand
         parent::configure();
 
         $this
-            ->setName('doctrine:migrations:latest')
+            ->setName('gheb:data-migrations:latest')
             ->addOption('db', null, InputOption::VALUE_REQUIRED, 'The database connection to use for this command.')
             ->addOption('em', null, InputOption::VALUE_REQUIRED, 'The entity manager to use for this command.')
             ->addOption('shard', null, InputOption::VALUE_REQUIRED, 'The shard connection to use for this command.');
