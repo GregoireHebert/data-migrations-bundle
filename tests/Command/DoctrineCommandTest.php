@@ -2,24 +2,27 @@
 
 namespace Gheb\DataMigrationsBundle\Tests\Command;
 
-use Doctrine\DBAL\Migrations\Configuration\Configuration;
+use Doctrine\Migrations\Configuration\Configuration;
 use Gheb\DataMigrationsBundle\Command\DoctrineCommand;
+use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
-class DoctrineCommandTest extends \PHPUnit\Framework\TestCase
+class DoctrineCommandTest extends TestCase
 {
     public function testConfigureMigrations()
     {
-        $configurationMock = $this->getMockBuilder('Doctrine\DBAL\Migrations\Configuration\Configuration')
+        $configurationMock = $this->getMockBuilder(Configuration::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $configurationMock->method('getMigrations')
             ->willReturn(array());
+        $configurationMock->method('getMigrationsDirectory')
+            ->willReturn(__DIR__ . '/../../');
 
-        $reflectionClass = new ReflectionClass('Doctrine\DBAL\Migrations\Configuration\Configuration');
+        $reflectionClass = new ReflectionClass(Configuration::class);
         if ($reflectionClass->hasMethod('getCustomTemplate')) {
             $configurationMock
                 ->expects($this->once())

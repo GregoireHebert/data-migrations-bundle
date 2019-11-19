@@ -7,6 +7,7 @@ namespace Gheb\DataMigrationsBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Doctrine\Migrations\Configuration\Configuration as BaseConfiguration;
 
 /**
  * @author Grégoire Hébert <gregoire@les-tilleuls.coop>
@@ -52,7 +53,7 @@ final class Configuration implements ConfigurationInterface
             ->validate()
                 ->ifString()
                 ->then(function ($v) {
-                    return \constant('Doctrine\DBAL\Migrations\Configuration\Configuration::VERSIONS_ORGANIZATION_'.strtoupper($v));
+                    return \constant('Doctrine\Migrations\Configuration\Configuration::VERSIONS_ORGANIZATION_'.strtoupper($v));
                 })
             ->end()
         ->end()
@@ -71,7 +72,7 @@ final class Configuration implements ConfigurationInterface
     {
         $constPrefix = 'VERSIONS_ORGANIZATION_';
         $prefixLen = \strlen($constPrefix);
-        $refClass = new \ReflectionClass('Doctrine\DBAL\Migrations\Configuration\Configuration');
+        $refClass = new \ReflectionClass(BaseConfiguration::class);
         $constsArray = $refClass->getConstants();
         $namesArray = [];
 
