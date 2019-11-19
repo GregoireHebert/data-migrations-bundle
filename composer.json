@@ -12,15 +12,15 @@
     ],
     "require": {
         "php": ">=5.4.0 <7.3",
-        "symfony/console": "~3.4|~4.0",
-        "symfony/config": "~3.4|~4.0",
-        "symfony/http-kernel": "~3.4|~4.0",
-        "symfony/dependency-injection": "~3.4|~4.0",
+        "symfony/console": "^3.4 | ^4.0",
+        "symfony/config": "^3.4 | ^4.0",
+        "symfony/http-kernel": "^3.4 | ^4.0",
+        "symfony/dependency-injection": "^3.4.26 | ^4.2.7",
         "doctrine/common": "^2.7",
-        "doctrine/orm": "~2.5",
+        "doctrine/orm": "^2.5",
         "doctrine/migrations": "^1.5",
-        "doctrine/dbal": "~2.5",
-        "doctrine/doctrine-bundle": "~1.10"
+        "doctrine/dbal": "^2.5",
+        "doctrine/doctrine-bundle": "^1.10"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.13",
