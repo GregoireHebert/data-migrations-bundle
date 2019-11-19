@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Gheb\DataMigrationsBundle\Command;
 
 use Doctrine\Bundle\DoctrineBundle\Command\DoctrineCommand as BaseCommand;
-use Doctrine\DBAL\Migrations\Configuration\AbstractFileConfiguration;
-use Doctrine\DBAL\Migrations\Configuration\Configuration;
+use Doctrine\Migrations\Configuration\AbstractFileConfiguration;
+use Doctrine\Migrations\Configuration\Configuration;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
