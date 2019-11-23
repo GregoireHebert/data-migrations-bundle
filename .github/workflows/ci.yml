@@ -84,6 +84,9 @@ jobs:
       - name: Run php-cs-fixer tests
         run: vendor/bin/php-cs-fixer fix --dry-run --diff
 
+      - name: Prepare PHPUnit tests
+        run: mkdir -p build/logs/phpunit
+
       - name: Run PHPUnit tests with coverage
         if: env.COVERAGE == '1'
         run: vendor/bin/phpunit --coverage-clover build/logs/phpunit/clover.xml --colors=always --testdox
