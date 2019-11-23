@@ -21,6 +21,7 @@ jobs:
       # https://github.community/t5/GitHub-Actions/GitHub-Actions-Matrix-options-dont-work-as-documented/m-p/29558
       matrix:
         php:
+          - '7.1'
           - '7.2'
           - '7.3'
         include:
