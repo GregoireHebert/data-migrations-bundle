@@ -15,6 +15,7 @@ namespace Gheb\DataMigrationsBundle\Command\Helper;
 
 use Doctrine\Bundle\DoctrineBundle\Command\Proxy\DoctrineCommandHelper as BaseDoctrineCommandHelper;
 use Doctrine\DBAL\Sharding\PoolingShardConnection;
+use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 
@@ -36,7 +37,9 @@ abstract class DoctrineCommandHelper extends BaseDoctrineCommandHelper
         }
 
         if ($input->getOption('shard')) {
-            $connection = $application->getHelperSet()->get('db')->getConnection();
+            /** @var ConnectionHelper $db */
+            $db = $application->getHelperSet()->get('db');
+            $connection = $db->getConnection();
             if (!$connection instanceof PoolingShardConnection) {
                 if (empty($managerNames)) {
                     throw new \LogicException(sprintf("Connection '%s' must implement shards configuration.", $input->getOption('db')));
