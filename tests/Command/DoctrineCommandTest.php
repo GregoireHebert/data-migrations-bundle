@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * This file is part of the DataMigrationBundle.
+ *
+ * (c) Grégoire Hébert <gregoire@les-tilleuls.coop>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace Gheb\DataMigrationsBundle\Tests\Command;
 
 use Doctrine\Migrations\Configuration\Configuration;
@@ -11,16 +22,16 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 
 class DoctrineCommandTest extends TestCase
 {
-    public function testConfigureMigrations()
+    public function testConfigureMigrations(): void
     {
         $configurationMock = $this->getMockBuilder(Configuration::class)
             ->disableOriginalConstructor()
             ->getMock();
 
         $configurationMock->method('getMigrations')
-            ->willReturn(array());
+            ->willReturn([]);
         $configurationMock->method('getMigrationsDirectory')
-            ->willReturn(__DIR__ . '/../../');
+            ->willReturn(__DIR__.'/../../');
 
         $reflectionClass = new ReflectionClass(Configuration::class);
         if ($reflectionClass->hasMethod('getCustomTemplate')) {
@@ -43,20 +54,20 @@ class DoctrineCommandTest extends TestCase
         $configurationMock
             ->expects($this->once())
             ->method('setMigrationsDirectory')
-            ->with(__DIR__ . '/../../');
+            ->with(__DIR__.'/../../');
 
         DoctrineCommand::configureMigrations($this->getContainer(), $configurationMock);
     }
 
     private function getContainer()
     {
-        return new ContainerBuilder(new ParameterBag(array(
-            'data_migrations.dir_name' => __DIR__ . '/../../',
+        return new ContainerBuilder(new ParameterBag([
+            'data_migrations.dir_name' => __DIR__.'/../../',
             'data_migrations.namespace' => 'App\\Migrations',
             'data_migrations.name' => 'App migrations',
             'data_migrations.table_name' => 'migrations',
             'data_migrations.organize_migrations' => Configuration::VERSIONS_ORGANIZATION_BY_YEAR,
             'data_migrations.custom_template' => 'migrations.tpl',
-        )));
+        ]));
     }
 }

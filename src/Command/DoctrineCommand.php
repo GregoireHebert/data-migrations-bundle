@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the DataMigrationBundle.
+ *
+ * (c) Grégoire Hébert <gregoire@les-tilleuls.coop>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Gheb\DataMigrationsBundle\Command;
@@ -16,7 +25,7 @@ use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
  */
 abstract class DoctrineCommand extends BaseCommand
 {
-    public static function configureMigrations(ContainerInterface $container, Configuration $configuration)
+    public static function configureMigrations(ContainerInterface $container, Configuration $configuration): void
     {
         if (!$configuration->getMigrationsDirectory()) {
             $dir = $container->getParameter('data_migrations.dir_name');
@@ -81,7 +90,7 @@ abstract class DoctrineCommand extends BaseCommand
      *
      * Injects the container to migrations aware of it
      */
-    private static function injectContainerToMigrations(ContainerInterface $container, array $versions)
+    private static function injectContainerToMigrations(ContainerInterface $container, array $versions): void
     {
         foreach ($versions as $version) {
             $migration = $version->getMigration();

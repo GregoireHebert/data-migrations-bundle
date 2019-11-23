@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * This file is part of the DataMigrationBundle.
+ *
+ * (c) Grégoire Hébert <gregoire@les-tilleuls.coop>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace Gheb\DataMigrationsBundle\Tests\DependencyInjection;
 
 use Gheb\DataMigrationsBundle\DependencyInjection\Configuration;
@@ -23,13 +34,13 @@ class ConfigurationTest extends TestCase
      */
     private $processor;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->configuration = new Configuration();
         $this->processor = new Processor();
     }
 
-    public function testDefaultConfig()
+    public function testDefaultConfig(): void
     {
         $treeBuilder = $this->configuration->getConfigTreeBuilder();
         $config = $this->processor->processConfiguration($this->configuration, []);
@@ -47,7 +58,7 @@ class ConfigurationTest extends TestCase
         ], $config);
     }
 
-    public function testOverwrittenConfig()
+    public function testOverwrittenConfig(): void
     {
         $treeBuilder = $this->configuration->getConfigTreeBuilder();
         $config = $this->processor->processConfiguration($this->configuration, ['data_migrations' => [
@@ -56,7 +67,7 @@ class ConfigurationTest extends TestCase
             'table_name' => 'custom_migration',
             'name' => 'my app migrations',
             'custom_template' => true,
-            'organize_migrations' => 'BY_YEAR_AND_MONTH'
+            'organize_migrations' => 'BY_YEAR_AND_MONTH',
         ]]);
 
         $this->assertInstanceOf(ConfigurationInterface::class, $this->configuration);
@@ -68,7 +79,7 @@ class ConfigurationTest extends TestCase
             'table_name' => 'custom_migration',
             'name' => 'my app migrations',
             'custom_template' => true,
-            'organize_migrations' => 'year_and_month'
+            'organize_migrations' => 'year_and_month',
         ], $config);
     }
 }

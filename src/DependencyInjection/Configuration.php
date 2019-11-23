@@ -1,13 +1,22 @@
 <?php
 
+/*
+ * This file is part of the DataMigrationBundle.
+ *
+ * (c) Grégoire Hébert <gregoire@les-tilleuls.coop>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Gheb\DataMigrationsBundle\DependencyInjection;
 
+use Doctrine\Migrations\Configuration\Configuration as BaseConfiguration;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
-use Doctrine\Migrations\Configuration\Configuration as BaseConfiguration;
 
 /**
  * @author Grégoire Hébert <gregoire@les-tilleuls.coop>
