@@ -1,5 +1,16 @@
 <?php
 
+/*
+ * This file is part of the DataMigrationBundle.
+ *
+ * (c) Grégoire Hébert <gregoire@les-tilleuls.coop>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+declare(strict_types=1);
+
 namespace Gheb\DataMigrationsBundle\Tests\DependencyInjection;
 
 use Gheb\DataMigrationsBundle\DependencyInjection\DataMigrationsExtension;
@@ -24,13 +35,13 @@ class DataMigrationsExtensionTest extends TestCase
     private $container;
     private $extension;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->container = $this->getContainer();
         $this->extension = new DataMigrationsExtension();
     }
 
-    public function testLoadDefaultConfig()
+    public function testLoadDefaultConfig(): void
     {
         $this->extension->load(self::DEFAULT_CONFIG, $this->container);
 
@@ -44,12 +55,12 @@ class DataMigrationsExtensionTest extends TestCase
 
     private function getContainer()
     {
-        return new ContainerBuilder(new ParameterBag(array(
+        return new ContainerBuilder(new ParameterBag([
             'kernel.debug' => false,
-            'kernel.bundles' => array(),
+            'kernel.bundles' => [],
             'kernel.cache_dir' => sys_get_temp_dir(),
             'kernel.environment' => 'test',
             'kernel.root_dir' => __DIR__.'/../../', // src dir
-        )));
+        ]));
     }
 }

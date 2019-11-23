@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the DataMigrationBundle.
+ *
+ * (c) Grégoire Hébert <gregoire@les-tilleuls.coop>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 declare(strict_types=1);
 
 namespace Gheb\DataMigrationsBundle\DependencyInjection;
@@ -19,7 +28,7 @@ final class DataMigrationsExtension extends Extension
      *
      * @param string[][] $configs
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
 
