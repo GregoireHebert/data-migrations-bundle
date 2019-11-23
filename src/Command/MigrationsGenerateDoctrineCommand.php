@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Gheb\DataMigrationsBundle\Command;
 
-use Doctrine\DBAL\Migrations\Tools\Console\Command\GenerateCommand;
+use Doctrine\Migrations\Tools\Console\Command\GenerateCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -16,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class MigrationsGenerateDoctrineCommand extends GenerateCommand
 {
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 
@@ -28,7 +28,7 @@ class MigrationsGenerateDoctrineCommand extends GenerateCommand
         ;
     }
 
-    public function execute(InputInterface $input, OutputInterface $output)
+    public function execute(InputInterface $input, OutputInterface $output): int
     {
         // EM and DB options cannot be set at same time
         if (null !== $input->getOption('em') && null !== $input->getOption('db')) {
