@@ -18,7 +18,7 @@
         "symfony/dependency-injection": "^4.2.7",
         "doctrine/common": "^2.8",
         "doctrine/orm": "^2.6",
-        "doctrine/migrations": "^2.0",
+        "doctrine/migrations": "^2.2",
         "doctrine/dbal": "^2.6",
         "doctrine/doctrine-bundle": "^1.10"
     },
