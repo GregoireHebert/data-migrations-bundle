@@ -1,3 +1,13 @@
+:exclamation: :exclamation:
+
+This Bundle has been useful, but is not necessary anymore since Doctrine Migrations Bundle 2.2.
+Prefer using multiple directories from doctrine migrations bundle :)
+
+https://symfony.com/doc/2.2/bundles/DoctrineMigrationsBundle/index.html#configuration
+
+I won't maintain this bundle anymore :)
+Thank you all !
+
 # DataMigrationsBundle
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
